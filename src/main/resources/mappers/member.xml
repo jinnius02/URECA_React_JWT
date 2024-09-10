@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ureca.member.dao.MemberDAO">
+  
+  <!-- 
+       주석예를 보고 새로 작성하세요(아이디와 비밀번호를 조건으로 하는 조회문을 만들면 좋겠습니다)
+       전달데이터와 결과값에 따라 파라미터타입과 결과타입은 변경해서 사용해야 해요.
+   -->  
+	<select id="selectLogin" parameterType="com.ureca.member.dto.Member" 
+	          resultType="com.ureca.member.dto.Member">
+	    select id,name, refreshToken
+	    from member 
+	    where id=#{id} and pwd=#{pwd}
+	</select>
+
+	<select id="selectUserInfo" parameterType="string" resultType="member">
+		select id,name
+		from member
+		where id = #{id}
+	</select>
+	
+	<update id="saveRefreshToken" parameterType="map">
+		update member
+		set refreshToken = #{refreshToken}
+		where id = #{id}
+	</update>
+	
+	<select id="getRefreshToken" parameterType="string" resultType="string">
+		select refreshToken
+		from member
+		where id = #{id}
+	</select>
+	
+	<update id="deleteRefreshToken" parameterType="map">
+		update member
+		set refreshToken = #{refreshToken}
+		where id = #{id}
+	</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

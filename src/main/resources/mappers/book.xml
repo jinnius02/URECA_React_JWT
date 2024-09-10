@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ureca.book.dao.BookDAO">
+ 
+  <!-- 
+       주석예를 보고 새로 작성하세요 
+       전달데이터와 결과값에 따라 파라미터타입과 결과타입은 변경해서 사용해야 해요.
+  -->
+  <insert id="insert" parameterType="Book">
+     insert into book (isbn,title,author,price,`desc`, originImg, saveImg) 
+     values (#{isbn},#{title},#{author},#{price},#{desc}, #{originImg}, #{saveImg})
+  </insert>
+  
+  <update id="update" parameterType="Book">
+     update book set title=#{title}, author=#{author}, price=#{price}, `desc`=#{desc}
+     where isbn=#{isbn}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+     delete from book where isbn=#{isbn}
+  </delete>
+  
+  <select id="select" parameterType="string" 
+          resultType="Book">
+     select isbn,title,author,price,`desc`, originImg, saveImg 
+     from book 
+     where isbn=#{isbn}
+  </select>
+  
+  <select id="selectAll" resultType="Book">
+     select isbn,title,author,price,`desc` 
+     from book
+  </select>
+  
+  <select id="selectPage" resultType="Book"  parameterType="map">
+     select isbn,title,author,price,`desc` 
+     from book
+     limit #{offset}, #{len}
+  </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
